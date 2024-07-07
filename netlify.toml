@@ -1,7 +1,14 @@
 [build]
-command = "npm uninstall react-yandex-maps create-react-context && npm install --force --legacy-peer-deps && npm install react-yandex-maps create-react-context --force --legacy-peer-deps && npm run build"
+command = "npm install --force --legacy-peer-deps && npm run build"
 publish = "build"
 
 [context.production.environment]
-  NODE_VERSION = "18.20.3"
-  NPM_VERSION = "10.7.0"
+NODE_VERSION = "18.20.3"
+NPM_VERSION = "10.7.0"
+
+[context.production]
+commands = [
+  "npm install --force --legacy-peer-deps",
+  "npm install react-yandex-maps create-react-context --force --legacy-peer-deps",
+  "npm run build"
+]
