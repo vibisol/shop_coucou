@@ -1,0 +1,116 @@
+.basket-list {
+  padding-top: 10rem;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.basket-item {
+  border: 1px solid #e0e0e0;
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  width: -webkit-fill-available !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.basket_product{
+  width: 100rem;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2rem !important;
+}
+
+.basket-item img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #e0e0e0;
+}
+
+.total {
+  margin-top: 20px;
+  text-align: right;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.mt-3 {
+  width: 70vh !important; 
+  margin-left: 0 !important;
+  margin-top: 0 !important;
+  margin-left: 2rem !important;
+}
+.button_product {
+  background-color: #7A2031 !important;
+  border-radius: 0 !important;
+  border: none !important;
+  color: #DAA9CF !important;
+}
+.w-100{
+  background-color: #7A2031 !important;
+  border-radius: 0 !important;
+  color: #DAA9CF !important;
+}
+
+/* Адаптивные стили для мобильных устройств */
+@media (max-width: 1000px) {
+  .basket-item {
+      align-items: center;
+  }
+
+  .basket_product{
+    flex-direction: column;
+    width: 100% !important;
+  }
+  .basket_product_main{
+    flex-direction: column;
+  }
+  .basket-item img {
+      width: 100%;
+      height: auto;
+  }
+
+  .quantity-control {
+      width: 100%;
+      justify-content: space-between;
+  }
+
+  .total {
+      width: 100%;
+      text-align: center;
+      margin-top: 2rem;
+  }
+
+  .button_product {
+      width: 100%;
+      margin-top: 1rem;
+  }
+
+  .mt-3 {
+      width: 100% !important;
+      margin: 0 !important;
+  }
+  .basket_price{
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1399px) {
+  .total{
+    font-size: 1rem !important;
+  }
+
+  .w-100{
+    font-size: 0.8rem !important;
+  }
+}

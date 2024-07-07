@@ -1,0 +1,53 @@
+@font-face {
+    font-family: 'Forum';
+    src: url('../fonts/Forum-Regular.ttf') format('truetype');;
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  .order_form_main{
+    padding-top: 5rem !important;
+    width: 100% !important;
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+    max-width: none !important;
+
+  }
+  .button_product{
+    margin-bottom: 10px !important;
+    font-family: 'Forum' !important;
+  }
+  
+  @media (max-width: 1000px) {
+    .order_form_box_main{
+      display: flex;
+      flex-direction: column-reverse !important;
+    }
+
+    .order_form_box_main_1{
+      width: 100% !important;
+    }
+
+    .order_form_box_main_2{
+      width: 100% !important;
+      margin-left: 0px !important;
+    }
+    .order_form_desc{
+      flex-direction: column !important;
+      display: flex;
+    }
+  }
+
+  @media (min-width: 490px) and (max-width: 1000px) {
+    .order_form_desc{
+      flex-direction: row !important;
+      display: flex;
+    }
+  }
+
+  @media (min-width: 1001px) {
+    .order_form_desc{
+      flex-direction: column !important;
+      display: flex;
+    }
+  }

@@ -1,0 +1,40 @@
+.refund_info_1_name,
+.refund_info_2_name,
+.refund_info_3_name,
+.refund_info_4_name,
+.refund_info_5_name,
+.refund_name{
+    color: #7A2031
+}
+.refund_name{
+    font-size: 2rem;
+}
+
+.refund{
+    padding: 9rem 2rem 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.refund_info{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.refund_info_1_text,
+.refund_info_2_text,
+.refund_info_3_text,
+.refund_info_4_text,
+.refund_info_5_text{
+    padding-left: 1rem;
+    padding-top: 1rem;
+    padding-right: 1rem;
+}
+.refund_info_1_text p,
+.refund_info_3_text p,
+.refund_info_4_text p,
+.refund_info_5_text p {
+    margin-bottom: 0px;
+}

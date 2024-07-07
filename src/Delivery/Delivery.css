@@ -1,0 +1,30 @@
+.delivery_info_1_name,
+.delivery_info_2_name,
+.delivery_info_3_name,
+.delivery_name{
+    color: #7A2031
+}
+
+.delivery_name{
+    font-size: 2rem;
+}
+.delivery{
+    padding: 9rem 2rem 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.delivery_info{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.delivery_info_1_text,
+.delivery_info_2_text,
+.delivery_info_3_text{
+    padding-left: 1rem;
+    padding-top: 1rem;
+    padding-right: 1rem;
+}

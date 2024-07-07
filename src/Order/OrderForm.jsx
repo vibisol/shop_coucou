@@ -1,0 +1,479 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { styled } from '@mui/material/styles';
+import Divider from '@mui/material/Divider';
+import { Link } from 'react-router-dom';
+import Modal from '@mui/material/Modal';
+import Pollicy from '../Policy/Policy';
+import Offer from '../Offer/Offer';
+import CloseIcon from '@mui/icons-material/Close';
+import { Container, Box, TextField, Button, RadioGroup, FormControlLabel, Radio, FormControl, Typography, IconButton} from '@mui/material';
+import './OrderForm.css'
+import {
+  YMap,
+  YMapComponentsProvider,
+  YMapDefaultSchemeLayer,
+  YMapDefaultFeaturesLayer,
+  YMapListener,
+  YMapControls,
+  YMapGeolocationControl,
+  YMapZoomControl,
+  YMapDefaultMarker,
+} from "ymap3-components";
+
+const CssTextField = styled(TextField)({
+  fontFamily: 'Forum, sans-serif',
+  '& .MuiInput-underline:before': {
+    borderBottomColor: '#7A2031',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#7A2031',
+  },
+  '& .Mui-focused': {
+    color: '#7A2031',
+  },
+  '& .MuiInputLabel-root': {
+    fontFamily: 'Forum, sans-serif',
+  },
+  '& .MuiInputBase-input': {
+    fontFamily: 'Forum, sans-serif',
+  },
+  '& .MuiInputLabel-root.Mui-focused': {
+    color: '#7A2031',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#7A2031',
+    },
+    '&:hover fieldset': {
+      borderColor: '#7A2031',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#7A2031',
+    },
+  },
+});
+
+const CssFormControlLabel = styled(FormControlLabel)({
+  '& .MuiTypography-root': {
+    fontFamily: 'Forum, sans-serif',
+  }
+});
+
+const apiKey = 'c52c54ff-316b-40af-a8a2-9b055fe81e4'; // Замените на ваш API-ключ
+const LOCATION = { center: [75.9342802, 37.3350986], zoom: 10 }; 
+
+function OrderForm() {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    name: '',
+    surname: '',
+    phone: '',
+    email: '',
+    city: 'Санкт-Петербург',
+    delivery: 'courier',
+    street: '',
+    apartment: '',
+    payment: 'card',
+    agree: false,
+  });
+  const [cartItems, setCartItems] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [openOffer, setOpenOffer] = useState(false);
+  const widget = useRef();
+  const ymap3Ref = useRef();
+  const [location, setLocation] = useState(LOCATION);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const handleOpenOffer = () => setOpenOffer(true);
+  const handleCloseOffer = () => setOpenOffer(false);
+
+  useEffect(() => {
+    const storedCart = JSON.parse(sessionStorage.getItem('cart')) || [];
+    setCartItems(storedCart);
+  }, []);
+
+  useEffect(() => {
+    if (formData.delivery === 'cdek') {
+      initializeCdekWidget();
+    }
+  }, [formData.delivery]);
+        const initializeCdekWidget = () => {
+          if (document.getElementById('cdek-map')) {
+            widget.current = new window.CDEKWidget({
+              from: {
+                country_code: 'RU',
+                city: 'Новосибирск',
+                postal_code: 630009,
+                code: 270,
+                address: 'ул. Большевистская, д. 101',
+              },
+              root: 'cdek-map',
+              apiKey: 'c52c54ff-316b-40af-a8a2-9b055fe81e4c', // Замените на ваш API-ключ
+              canChoose: true,
+              servicePath: 'http://localhost:8000/service.php', // Убедитесь, что путь корректен
+              hideFilters: {
+                have_cashless: true,
+                have_cash: true,
+                is_dressing_room: true,
+                type: false,
+              },
+              hideDeliveryOptions: {
+                office: false,
+                door: false,
+              },
+              debug: false,
+              goods: [
+                {
+                  width: 10,
+                  height: 10,
+                  length: 10,
+                  weight: 10,
+                },
+              ],
+              defaultLocation: [30.9342802, 59.3350986],
+              lang: 'rus',
+              currency: 'RUB',
+              tariffs: {
+                // office: [234, 136, 138],
+                // door: [233, 137, 139],
+              },
+              onReady() {
+                
+              },
+              onCalculate() {
+                
+              },
+              onChoose() {
+                
+              },
+            });
+          }
+        };
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate('/confirmation');
+  };
+
+  const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const deliveryCost = 500;
+
+  // const onUpdate = useCallback(({ location, mapInAction }) => {
+  //   if (!mapInAction) {
+  //     setLocation({
+  //       center: location.center,
+  //       zoom: location.zoom,
+  //     });
+  //   }
+  // }, []);
+
+  // const zoomIn = useCallback(() => {
+  //   setLocation((location) => {
+  //     const newLocation = {
+  //       ...location,
+  //       zoom: location.zoom + 1,
+  //     };
+  //     return newLocation;
+  //   });
+  // }, []);
+
+  // const zoomOut = useCallback(() => {
+  //   setLocation((location) => {
+  //     const newLocation = {
+  //       ...location,
+  //       zoom: location.zoom - 1,
+  //     };
+  //     return newLocation;
+  //   });
+  // }, []);
+
+  return (
+    <>
+      <Container className='order_form_main'>
+        <form onSubmit={handleSubmit}>
+          <Box display="flex" justifyContent="space-between" className='order_form_box_main'>
+            <Box width="60%" className='order_form_box_main_1'>
+              <Typography sx={{ fontFamily: 'Forum' }}>ОФОРМЛЕНИЕ ЗАКАЗА</Typography>
+              <Box mb={2}>
+                <CssTextField
+                  fullWidth
+                  label="Имя"
+                  name="name"
+                  variant="standard"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </Box>
+              <Box mb={2}>
+                <CssTextField
+                  fullWidth
+                  label="Фамилия"
+                  name="surname"
+                  variant="standard"
+                  value={formData.surname}
+                  onChange={handleChange}
+                  required
+                />
+              </Box>
+              <Box mb={2}>
+                <CssTextField
+                  fullWidth
+                  label="Контактный телефон"
+                  name="phone"
+                  variant="standard"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                />
+              </Box>
+              <Box mb={2}>
+                <CssTextField
+                  fullWidth
+                  label="E-mail"
+                  name="email"
+                  variant="standard"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </Box>
+              <Typography sx={{ fontFamily: 'Forum' }}>ДОСТАВКА</Typography>
+              <Box mb={2}>
+                <FormControl component="fieldset">
+                  <RadioGroup
+                    name="delivery"
+                    value={formData.delivery}
+                    onChange={handleChange}
+                  >
+                    {/* <CssFormControlLabel
+                      value="pochta"
+                      control={<Radio sx={{ color: '#7A2031 !important' }} />}
+                      label="ПОЧТА РОССИИ (450.00 ₽)"
+                    /> */}
+                    <CssFormControlLabel
+                      value="cdek"
+                      control={<Radio sx={{ color: '#7A2031 !important' }} />}
+                      label="CDEK"
+                    />
+                     <CssFormControlLabel
+                      value="courier"
+                      control={<Radio sx={{ color: '#7A2031 !important' }} />}
+                      label="ДОСТАВКА КУРЬЕРОМ ПО г. САНКТ-ПЕТЕРБУРГ (500 ₽)"
+                    />
+                  </RadioGroup>
+                </FormControl>
+              </Box>
+              {formData.delivery === 'cdek' && (
+                <Box mb={2}>
+                  <Typography>Выберите пункт выдачи CDEK:</Typography>
+                  <div id="cdek-map" style={{ width: 'auto', height: '600px' , zIndex:1}}></div>
+                  <YMapComponentsProvider apiKey={apiKey} lang="ru_RU">
+                    <YMap
+                      key="map"
+                      ref={ymap3Ref}
+                      location={location}
+                      mode="vector"
+                      theme="dark"
+                    >
+                      <YMapDefaultSchemeLayer />
+                      <YMapDefaultFeaturesLayer />
+                      <YMapListener />
+                      <YMapDefaultMarker coordinates={[59.9342802, 30.3350986]} />
+                      <YMapControls position="bottom">
+                        <YMapZoomControl />
+                      </YMapControls>
+                      <YMapControls position="bottom left">
+                        <YMapGeolocationControl />
+                      </YMapControls>
+                      <YMapControls position="top">
+                        {/* <YMapControlButton>
+                          <div onClick={zoomIn} className="map-custom-button">
+                            Custom zoom in
+                          </div>
+                        </YMapControlButton> */}
+                        {/* <YMapControlButton>
+                          <div onClick={zoomOut} className="map-custom-button">
+                            Custom zoom out
+                          </div>
+                        </YMapControlButton> */}
+                      </YMapControls>
+                    </YMap>
+                  </YMapComponentsProvider>
+                </Box>
+              )}
+              <Box mb={2}>
+                <CssTextField
+                  fullWidth
+                  label="Город"
+                  name="city"
+                  variant="standard"
+                  value={formData.city}
+                  onChange={handleChange}
+                  required
+                />
+              </Box>
+              <Box mb={2}>
+                <CssTextField
+                  fullWidth
+                  label="Улица"
+                  name="street"
+                  variant="standard"
+                  value={formData.street}
+                  onChange={handleChange}
+                  required
+                />
+              </Box>
+              <Box mb={2}>
+                <CssTextField
+                  fullWidth
+                  label="Дом, квартира"
+                  name="apartment"
+                  variant="standard"
+                  value={formData.apartment}
+                  onChange={handleChange}
+                  required
+                />
+              </Box>
+              <Typography sx={{ fontFamily: 'Forum' }}>СПОСОБ ОПЛАТЫ</Typography>
+              <Box mb={2}>
+                <FormControl component="fieldset">
+                  <RadioGroup
+                    name="payment"
+                    value={formData.payment}
+                    onChange={handleChange}
+                  >
+                    <CssFormControlLabel
+                      value="card"
+                      control={<Radio sx={{ color: '#7A2031 !important' }} />}
+                      label="БАНКОВСКОЙ КАРТОЙ"
+                    />
+                    <CssFormControlLabel
+                      value="sberbank"
+                      control={<Radio sx={{ color: '#7A2031 !important' }} />}
+                      label="ПРИ ПОЛУЧЕНИИ ЗАКАЗА"
+                    />
+                  </RadioGroup>
+                </FormControl>
+              </Box>
+              <Box mb={2}>
+                <CssTextField
+                  label="Комментарий к заказу"
+                  multiline
+                  rows={4}
+                  defaultValue={''}
+                  sx={{ width: '100%' }}
+                />
+              </Box>
+              <Box mb={2}>
+                Нажимая кнопку "Оформить заказ", Вы соглашаетесь с условиями <Link to="/delivery" style={{ color: 'inherit !important' }}>доставки и оплаты</Link>, <Link onClick={handleOpen} style={{ color: 'inherit !important' }}>политикой конфиденциальности</Link>, <Link onClick={handleOpenOffer} style={{ color: 'inherit !important' }}>публичной офертой</Link> и принимаете условия возврата.
+              </Box>
+              <Button variant="contained" type="submit" fullWidth sx={{ borderRadius: '0px', backgroundColor: '#7A2031' }} className='button_product'>
+                ОФОРМИТЬ ЗАКАЗ
+              </Button>
+            </Box>
+
+            <Box width="40%" ml={3} p={2} border="1px solid #ccc" height='fit-content' className='order_form_box_main_2'>
+              <Typography sx={{ fontFamily: 'Forum' }}>ВАШ ЗАКАЗ</Typography>
+              <Box>
+                {cartItems.map((item) => (
+                  <Box key={item.id} display="flex" alignItems="center" mb={2}>
+                    <img src={item.image} alt={item.name} width="80" height="80" style={{ marginRight: '16px' }} />
+                    <div style={{ display: 'flex' }} className='order_form_desc'>
+                      <p>{item.name}, размер: {item.size}</p>
+                      <p> &nbsp; цена: {item.price.toLocaleString()} ₽</p>
+                      <p> &nbsp; количество: {item.quantity.toLocaleString()}</p>
+                    </div>
+                  </Box>
+                ))}
+                <Divider sx={{ border: '1px solid' }} />
+                <div>
+                  <p style={{ marginBottom: '2px' }}>Сумма по товарам <span>{total.toLocaleString()} ₽</span></p>
+                  <p style={{ marginBottom: '2px' }}>Стоимость доставки <span>{deliveryCost.toLocaleString()} ₽</span></p>
+                </div>
+                <Divider sx={{ border: '1px solid' }} />
+                <div>
+                  <p><strong>Итого: <span>{(total + deliveryCost).toLocaleString()} ₽</span></strong></p>
+                </div>
+              </Box>
+            </Box>
+          </Box>
+        </form>
+      </Container>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      >
+        <Box sx={{
+          width: '80%',
+          maxHeight: '80%',
+          backgroundColor: 'white',
+          padding: 2,
+          borderRadius: 1,
+          overflowY: 'auto',
+          position: 'relative'
+        }}>
+          <IconButton
+            onClick={handleClose}
+            sx={{ position: 'absolute', top: 8, right: 8 }}
+          >
+            <CloseIcon />
+          </IconButton>
+          <Pollicy />
+        </Box>
+      </Modal>
+      <Modal
+        open={openOffer}
+        onClose={handleCloseOffer}
+        sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      >
+        <Box sx={{
+          width: '80%',
+          maxHeight: '80%',
+          backgroundColor: 'white',
+          padding: 2,
+          borderRadius: 1,
+          overflowY: 'auto',
+          position: 'relative'
+        }}>
+          <IconButton
+            onClick={handleCloseOffer}
+            sx={{ position: 'absolute', top: 8, right: 8 }}
+          >
+            <CloseIcon />
+          </IconButton>
+          <Offer />
+        </Box>
+      </Modal>
+    </>
+  );
+}
+
+export default OrderForm;
+
+            {/* <CssFormControlLabel
+                control={
+                  <Checkbox
+                    checked={formData.agree}
+                    onChange={handleChange}
+                    name="agree"
+                    sx={{
+                      color: '#7A2031',
+                      '&.Mui-checked': {
+                        color: '#7A2031',
+                      },
+                    }}
+                  />
+                }
+                label="Согласие на обработку персональных данных"
+              /> */}

@@ -1,0 +1,11 @@
+.offer_name{
+    color: #7A2031;
+    display: flex;
+    justify-content: center;
+}
+
+.offer_name_main{
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+}

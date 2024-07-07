@@ -1,0 +1,50 @@
+.care_info_1_name,
+.care_info_2_name,
+.care_info_3_name,
+.care_name{
+    color: #7A2031
+}
+.care_name{
+    font-size: 2rem;
+}
+.care{
+    padding: 9rem 2rem 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.care_info{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.care_info_1_text,
+.care_info_2_text,
+.care_info_3_text {
+    padding: 0 1rem 1rem 1rem;
+}
+.care_info_1_text p,
+.care_info_3_text p,
+.care_info_4_text p,
+.care_info_2_text p {
+    margin-bottom: 0px;
+}
+
+.care_info_size{
+    display: flex;
+    align-items: center;
+}
+
+.table_style td{
+    border: 1px solid gray;
+    text-align: center;
+   }
+
+.table_style_td{
+    height: fit-content;
+}
+.care_info_size{
+    padding-top: 1rem;
+}

@@ -1,0 +1,40 @@
+.contacts_info_1_name,
+.contacts_info_2_name,
+.contacts_info_3_name,
+.contacts_info_4_name,
+.contacts_info_5_name,
+.contacts_name{
+    color: #7A2031
+}
+.contacts_name{
+    font-size: 2rem;
+}
+
+.contacts{
+    padding: 9rem 2rem 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.contacts_info{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.contacts_info_1_text,
+.contacts_info_2_text,
+.contacts_info_3_text,
+.contacts_info_4_text,
+.contacts_info_5_text{
+    padding-left: 1rem;
+    padding-top: 1rem;
+    padding-right: 1rem;
+}
+.contacts_info_1_text p,
+.contacts_info_3_text p,
+.contacts_info_4_text p,
+.contacts_info_5_text p {
+    margin-bottom: 0px;
+}

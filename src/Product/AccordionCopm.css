@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'Forum';
+    src: url('../fonts/Forum-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+   .table_style td{
+    border: 1px solid gray;
+    text-align: center;
+   }
