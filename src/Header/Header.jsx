@@ -93,10 +93,10 @@ function Header() {
         }
       }}
       className={`header_main ${scrolled ? 'scrolled' : ''}`}
-    >
-      <Box sx={{ zIndex: 9999 }}>
+    > 
+      <Box sx={{ zIndex: '10001 !important' }}>
         <Button onClick={toggleDrawer(true)}><MenuIcon sx={{ color: 'black' }} /></Button>
-        <Drawer open={open} onClose={toggleDrawer(false)}>
+        <Drawer open={open} onClose={toggleDrawer(false)} sx={{zIndex: '10001 !important'}}>
           {DrawerList}
         </Drawer>
       </Box>

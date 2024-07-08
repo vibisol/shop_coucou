@@ -11,7 +11,11 @@ const products = [
 function Banner() {
   return (
     <Box className='banner'>
-      <video className='banner-video' autoPlay loop muted>
+      <video className='banner-video'       
+       autoPlay
+        loop
+        muted
+        playsInline>
         <source src='/img/videoforthewomen.mp4' type='video/mp4' />
       </video>
 
