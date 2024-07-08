@@ -168,34 +168,8 @@ function OrderForm() {
   const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const deliveryCost = 500;
 
-  // const onUpdate = useCallback(({ location, mapInAction }) => {
-  //   if (!mapInAction) {
-  //     setLocation({
-  //       center: location.center,
-  //       zoom: location.zoom,
-  //     });
-  //   }
-  // }, []);
+  console.log(setLocation)
 
-  // const zoomIn = useCallback(() => {
-  //   setLocation((location) => {
-  //     const newLocation = {
-  //       ...location,
-  //       zoom: location.zoom + 1,
-  //     };
-  //     return newLocation;
-  //   });
-  // }, []);
-
-  // const zoomOut = useCallback(() => {
-  //   setLocation((location) => {
-  //     const newLocation = {
-  //       ...location,
-  //       zoom: location.zoom - 1,
-  //     };
-  //     return newLocation;
-  //   });
-  // }, []);
 
   return (
     <>
@@ -255,11 +229,6 @@ function OrderForm() {
                     value={formData.delivery}
                     onChange={handleChange}
                   >
-                    {/* <CssFormControlLabel
-                      value="pochta"
-                      control={<Radio sx={{ color: '#7A2031 !important' }} />}
-                      label="ПОЧТА РОССИИ (450.00 ₽)"
-                    /> */}
                     <CssFormControlLabel
                       value="cdek"
                       control={<Radio sx={{ color: '#7A2031 !important' }} />}
@@ -296,16 +265,6 @@ function OrderForm() {
                         <YMapGeolocationControl />
                       </YMapControls>
                       <YMapControls position="top">
-                        {/* <YMapControlButton>
-                          <div onClick={zoomIn} className="map-custom-button">
-                            Custom zoom in
-                          </div>
-                        </YMapControlButton> */}
-                        {/* <YMapControlButton>
-                          <div onClick={zoomOut} className="map-custom-button">
-                            Custom zoom out
-                          </div>
-                        </YMapControlButton> */}
                       </YMapControls>
                     </YMap>
                   </YMapComponentsProvider>
@@ -460,20 +419,3 @@ function OrderForm() {
 }
 
 export default OrderForm;
-
-            {/* <CssFormControlLabel
-                control={
-                  <Checkbox
-                    checked={formData.agree}
-                    onChange={handleChange}
-                    name="agree"
-                    sx={{
-                      color: '#7A2031',
-                      '&.Mui-checked': {
-                        color: '#7A2031',
-                      },
-                    }}
-                  />
-                }
-                label="Согласие на обработку персональных данных"
-              /> */}

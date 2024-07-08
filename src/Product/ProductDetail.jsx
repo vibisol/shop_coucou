@@ -152,15 +152,3 @@ function ProductDetails({ product }) {
 
 export default ProductDetails;
 
-
-
-
-          {/* <Box style={{ marginTop: '1rem' }}>ВЫБРАТЬ ЦВЕТ</Box> */}
-          {/* <ColorPicker
-            colors={product.color}
-            specialColor={specialColorImage}
-            onColorSelect={setSelectedColor}
-            productId={product.id}
-            navigate={navigate}
-            relatedProducts={relatedProducts}
-          /> */}
