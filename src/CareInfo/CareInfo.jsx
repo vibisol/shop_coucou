@@ -17,7 +17,7 @@ function CareInfo() {
                         ТАБЛИЦА РАЗМЕРОВ
                     </Box>
                     <Box className='refund_info_1_text'>
-                            <table style={{ width: '60%', borderCollapse: 'collapse' }}>
+                            <table style={{ width: '60%', borderCollapse: 'collapse' }} className='table_size'>
                                 <thead>
                                     <tr>
                                         <th colSpan="6" style={{ textAlign: 'center', border: '1px solid gray' }}>Таблица размеров</th>

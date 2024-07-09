@@ -48,3 +48,9 @@
 .care_info_size{
     padding-top: 1rem;
 }
+
+@media (max-width: 1000px) {
+    .table_size{
+        width: 100% !important;
+}
+}

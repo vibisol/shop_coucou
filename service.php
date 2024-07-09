@@ -3,13 +3,12 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    // Если это предварительный запрос, просто завершите его с успешным кодом ответа
     http_response_code(200);
     exit();
 }
 $service = new service(
-    'VxDyudArsJXQRaUiiylakWar0yDo6Mss',
-    'WnKxg2hvkHm28VcGaSuTzi8UH6wh88mt'
+    'VxDyudArsJXQla0yDo6Mss',
+    'WnKxg2hvkHm28VcGh88mt'
  );
 $service->process($_GET, file_get_contents('php://input'));
 
