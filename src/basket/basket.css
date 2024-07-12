@@ -55,10 +55,11 @@
   border: none !important;
   color: #DAA9CF !important;
 }
-.w-100{
+.w-101{
   background-color: #7A2031 !important;
   border-radius: 0 !important;
   color: #DAA9CF !important;
+  width: 100% !important;
 }
 
 /* Адаптивные стили для мобильных устройств */
@@ -110,7 +111,7 @@
     font-size: 1rem !important;
   }
 
-  .w-100{
+  .w-101{
     font-size: 0.8rem !important;
   }
 }

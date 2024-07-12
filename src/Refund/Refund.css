@@ -37,4 +37,5 @@
 .refund_info_4_text p,
 .refund_info_5_text p {
     margin-bottom: 0px;
+    text-align: justify;
 }

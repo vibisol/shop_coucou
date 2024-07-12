@@ -4,7 +4,19 @@ import ListItemButton from '@mui/material/ListItemButton';
 import { Link } from '@mui/material';
 import './Banner.css';
 const products = [
-  { id: 1, extraId: 1, name: 'PRODUCT 1', size: ['36', '37', '38', '39', '40'], color: ['#710101', '#101820'], price: 100, images: ['https://via.placeholder.com/400x300?text=1-1', 'https://via.placeholder.com/400x300?text=2-1', 'https://via.placeholder.com/400x300?text=3-1', 'https://via.placeholder.com/400x300?text=4-1', 'https://via.placeholder.com/400x300?text=5-1'] },
+  { id: 1, 
+    extraId: 1, 
+    name: 'PRODUCT 1', 
+    size: ['36', '37', '38', '39', '40'], 
+    color: ['#710101', '#101820'], 
+    price: 100, 
+    images: [
+    'https://via.placeholder.com/400x300?text=1-1', 
+    'https://via.placeholder.com/400x300?text=2-1', 
+    'https://via.placeholder.com/400x300?text=3-1', 
+    '/img/bobo_black_1.jpg', 
+    '/img/bobo_red_1.jpg'
+  ] },
 
 ];
 
@@ -36,7 +48,7 @@ function Banner() {
                 <Card className="mb-4 " >
                   <Carousel interval={null} onClick={(e) => e.stopPropagation()}>
                     {product.images.map((image, index) => (
-                      <Carousel.Item key={index}>
+                      <Carousel.Item key={index} className='cor_item'>
                         <img
                           className="d-block w-100"
                           src={image}

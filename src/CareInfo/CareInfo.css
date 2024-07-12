@@ -30,6 +30,7 @@
 .care_info_4_text p,
 .care_info_2_text p {
     margin-bottom: 0px;
+    text-align: justify;
 }
 
 .care_info_size{
@@ -52,5 +53,26 @@
 @media (max-width: 1000px) {
     .table_size{
         width: 100% !important;
+}
+}
+
+@media (max-width: 700px) {
+    .care_info_size{
+        flex-direction: column;
+}
+}
+
+@media (max-width: 450px) {
+    .care_info_size_img img{
+        width: 100% !important;
+}
+}
+
+@media (max-width: 420px) {
+    .table_style td{
+        font-size: 0.6rem !important;
+}
+.table_size th{
+    font-size: 0.7rem !important;
 }
 }

@@ -176,9 +176,9 @@ function OrderForm() {
       <Container className='order_form_main'>
         <form onSubmit={handleSubmit}>
           <Box display="flex" justifyContent="space-between" className='order_form_box_main'>
-            <Box width="60%" className='order_form_box_main_1'>
-              <Typography sx={{ fontFamily: 'Forum' }}>ОФОРМЛЕНИЕ ЗАКАЗА</Typography>
-              <Box mb={2}>
+            <Box width="100%" className='order_form_box_main_1'>
+              <Typography sx={{ fontFamily: 'Forum' ,     color: '#7A2031', fontSize: '2rem', marginBottom: '4rem'}}>ОФОРМЛЕНИЕ ЗАКАЗА</Typography>
+              {/* <Box mb={2}>
                 <CssTextField
                   fullWidth
                   label="Имя"
@@ -188,8 +188,8 @@ function OrderForm() {
                   onChange={handleChange}
                   required
                 />
-              </Box>
-              <Box mb={2}>
+              </Box> */}
+              {/* <Box mb={2}>
                 <CssTextField
                   fullWidth
                   label="Фамилия"
@@ -199,8 +199,8 @@ function OrderForm() {
                   onChange={handleChange}
                   required
                 />
-              </Box>
-              <Box mb={2}>
+              </Box> */}
+              {/* <Box mb={2}>
                 <CssTextField
                   fullWidth
                   label="Контактный телефон"
@@ -210,8 +210,8 @@ function OrderForm() {
                   onChange={handleChange}
                   required
                 />
-              </Box>
-              <Box mb={2}>
+              </Box> */}
+              {/* <Box mb={2}>
                 <CssTextField
                   fullWidth
                   label="E-mail"
@@ -241,8 +241,8 @@ function OrderForm() {
                     />
                   </RadioGroup>
                 </FormControl>
-              </Box>
-              {formData.delivery === 'cdek' && (
+              </Box> */}
+              {/* {formData.delivery === 'cdek' && (
                 <Box mb={2}>
                   <Typography>Выберите пункт выдачи CDEK:</Typography>
                   <div id="cdek-map" style={{ width: 'auto', height: '600px' , zIndex:1}}></div>
@@ -269,8 +269,8 @@ function OrderForm() {
                     </YMap>
                   </YMapComponentsProvider>
                 </Box>
-              )}
-              <Box mb={2}>
+              )} */}
+              {/* <Box mb={2}>
                 <CssTextField
                   fullWidth
                   label="Город"
@@ -291,8 +291,8 @@ function OrderForm() {
                   onChange={handleChange}
                   required
                 />
-              </Box>
-              <Box mb={2}>
+              </Box> */}
+              {/* <Box mb={2}>
                 <CssTextField
                   fullWidth
                   label="Дом, квартира"
@@ -323,8 +323,8 @@ function OrderForm() {
                     />
                   </RadioGroup>
                 </FormControl>
-              </Box>
-              <Box mb={2}>
+              </Box> */}
+              {/* <Box mb={2}>
                 <CssTextField
                   label="Комментарий к заказу"
                   multiline
@@ -332,39 +332,53 @@ function OrderForm() {
                   defaultValue={''}
                   sx={{ width: '100%' }}
                 />
-              </Box>
-              <Box mb={2}>
-                Нажимая кнопку "Оформить заказ", Вы соглашаетесь с условиями <Link to="/delivery" style={{ color: 'inherit !important' }}>доставки и оплаты</Link>, <Link onClick={handleOpen} style={{ color: 'inherit !important' }}>политикой конфиденциальности</Link>, <Link onClick={handleOpenOffer} style={{ color: 'inherit !important' }}>публичной офертой</Link> и принимаете условия возврата.
-              </Box>
-              <Button variant="contained" type="submit" fullWidth sx={{ borderRadius: '0px', backgroundColor: '#7A2031' }} className='button_product'>
-                ОФОРМИТЬ ЗАКАЗ
-              </Button>
-            </Box>
+              </Box> */}
 
-            <Box width="40%" ml={3} p={2} border="1px solid #ccc" height='fit-content' className='order_form_box_main_2'>
+            <Box width="95%" ml={3} p={2} border="1px solid #ccc" height='fit-content' className='order_form_box_main_2' sx={{marginBottom: '4rem'}}>
               <Typography sx={{ fontFamily: 'Forum' }}>ВАШ ЗАКАЗ</Typography>
               <Box>
-                {cartItems.map((item) => (
-                  <Box key={item.id} display="flex" alignItems="center" mb={2}>
-                    <img src={item.image} alt={item.name} width="80" height="80" style={{ marginRight: '16px' }} />
+                {cartItems.map((item, index) => (
+                  <React.Fragment key={item.id}>
+                  <Box display="flex" alignItems="center" mb={2}>
+                    <img src={item.image} alt={item.name} width="80" height="100" style={{ marginRight: '16px', objectFit: 'contain' }} />
                     <div style={{ display: 'flex' }} className='order_form_desc'>
-                      <p>{item.name}, размер: {item.size}</p>
-                      <p> &nbsp; цена: {item.price.toLocaleString()} ₽</p>
-                      <p> &nbsp; количество: {item.quantity.toLocaleString()}</p>
+                      <p>{item.name}</p>
+                      <p>размер: {item.size}</p>
+                      <p>цена: {item.price.toLocaleString()} ₽</p>
+                      <p>количество: {item.quantity.toLocaleString()}</p>
                     </div>
                   </Box>
+                  {index < cartItems.length - 1 && <Divider sx={{ border: '1px solid' }} />}
+                </React.Fragment>
                 ))}
                 <Divider sx={{ border: '1px solid' }} />
                 <div>
                   <p style={{ marginBottom: '2px' }}>Сумма по товарам <span>{total.toLocaleString()} ₽</span></p>
-                  <p style={{ marginBottom: '2px' }}>Стоимость доставки <span>{deliveryCost.toLocaleString()} ₽</span></p>
+                  {/* <p style={{ marginBottom: '2px' }}>Стоимость доставки <span>{deliveryCost.toLocaleString()} ₽</span></p> */}
                 </div>
                 <Divider sx={{ border: '1px solid' }} />
                 <div>
-                  <p><strong>Итого: <span>{(total + deliveryCost).toLocaleString()} ₽</span></strong></p>
+                  <p><strong>Итого: <span>{(total).toLocaleString()} ₽</span></strong></p>
                 </div>
               </Box>
             </Box>
+              <Box className='text_false' sx={{marginTop: '4rem'}}>
+                <Box>
+                  <p>На данный момент на сайте ведутся технические работы, для дальнейшего оформления заказа напишите менеджеру в <a className='link_false'  href="https://t.me/CouCou_spb" >Telegram</a> или <a className='link_false'  href="https://wa.me/79112869339">WhatsApp</a></p>
+                  <p>Приносим свои извенения за временные неудобства.</p>
+                </Box>
+              </Box>
+              {/* <Box mb={2}>
+                Нажимая кнопку "Оформить заказ", Вы соглашаетесь с условиями <Link to="/delivery" style={{ color: 'inherit !important' }}>доставки и оплаты</Link>, <Link onClick={handleOpen} style={{ color: 'inherit !important' }}>политикой конфиденциальности</Link>, <Link onClick={handleOpenOffer} style={{ color: 'inherit !important' }}>публичной офертой</Link> и принимаете условия возврата.
+              </Box> */}
+              <Box mb={2}>
+                Так же перед оформлением заказа ознакомтесь с условиями <Link to="/delivery" style={{ color: 'inherit !important' }}>доставки и оплаты</Link>, <Link onClick={handleOpen} style={{ color: 'inherit !important' }}>политикой конфиденциальности</Link>, <Link onClick={handleOpenOffer} style={{ color: 'inherit !important' }}>публичной офертой</Link> и принимаете условия возврата.
+              </Box>
+              {/* <Button variant="contained" type="submit" fullWidth sx={{ borderRadius: '0px', backgroundColor: '#7A2031' }} className='button_product'>
+                ОФОРМИТЬ ЗАКАЗ
+              </Button> */}
+            </Box>
+
           </Box>
         </form>
       </Container>

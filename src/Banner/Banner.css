@@ -32,6 +32,19 @@
 }
 
 
+.cor_item img{
+    width: 100% !important; /* Устанавливаем ширину изображения */
+    height: 100% !important; /* Устанавливаем высоту изображения */
+    object-fit: contain !important; /* Обеспечиваем сохранение пропорций изображения */
+    object-position: center !important; /* Центрируем изображение внутри блока */
+}
+.cor_item {
+    height: 250px;
+    background-color: #ebedef !important;
+}
+
+
+
 @media (min-width: 700px) and (max-width: 1000px) {
     .corusel_main_p .corusel_m{
         width: 50%;

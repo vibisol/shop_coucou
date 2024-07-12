@@ -17,7 +17,9 @@
     margin-bottom: 10px !important;
     font-family: 'Forum' !important;
   }
-  
+  .link_false{
+    color: inherit
+  }
   @media (max-width: 1000px) {
     .order_form_box_main{
       display: flex;

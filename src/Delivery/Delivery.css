@@ -28,3 +28,11 @@
     padding-top: 1rem;
     padding-right: 1rem;
 }
+
+.delivery_info_1_text p,
+.delivery_info_2_text p,
+.delivery_info_3_text
+{
+    text-align: justify;
+}
+

@@ -81,7 +81,7 @@ function Basket() {
                   <span>ИТОГО:</span>
                   <span>{total.toLocaleString()} ₽</span>
                 </div>
-                <Button variant="dark" className="w-100" onClick={handleSubmit}>ОФОРМИТЬ ЗАКАЗ</Button>
+                <Button variant="dark" className="w-101" onClick={handleSubmit}>ОФОРМИТЬ ЗАКАЗ</Button>
               </Col>
             </Row>
           </Box></>

@@ -14,8 +14,12 @@
 
 .carousel-item img {
   transition: none !important;
-  object-fit: cover;
+  object-fit: contain;
 }
+.carousel-item {
+  background-color: #ebedef !important;
+}
+
 
 .custom-col-5-5 {
   margin-left: 2.5rem !important;

@@ -42,3 +42,12 @@ left: 45%;
     background-color: white;
     
 }
+
+@media (max-width: 680px) {
+    .header_logo img{
+        width: 60% !important;
+}
+.header_logo a{
+    justify-content: center;
+}
+}

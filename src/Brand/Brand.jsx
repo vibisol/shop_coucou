@@ -9,7 +9,7 @@ function Brand() {
     <Box className='brand' >
         <Box className='brand_name' > О БРЕНДЕ</Box>
             <Box className='brand_name_img' >
-                <img src='/img/brand.png' alt='size'/>
+                <img src='/img/brand.png' alt='size' style={{width: '100%'}}/>
             </Box>
             <Box className='brand_info_1_text'> 
             <p style={{display: 'inline', marginBottom:'1rem'}}>
