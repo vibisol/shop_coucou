@@ -20,6 +20,22 @@
   .link_false{
     color: inherit
   }
+  .custom-link {
+    color: inherit !important;
+
+  }
+  
+  .custom-link:visited {
+    color: inherit !important;
+  }
+  
+  .custom-link:hover {
+    color: inherit !important;
+  }
+  
+  .custom-link:active {
+    color: inherit !important;
+  }
   @media (max-width: 1000px) {
     .order_form_box_main{
       display: flex;
