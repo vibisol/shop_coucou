@@ -1,5 +1,5 @@
 [build]
-command = "yarn install && yarn build"
+ command = "CI= yarn install && yarn build"
 publish = "build"
 
 [[redirects]]
