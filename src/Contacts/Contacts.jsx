@@ -85,7 +85,7 @@ function Contacts() {
                             <TelegramIcon />
                         </IconButton>
                         <Box className='contacts_info_2_1_text'>
-                        <a style={{color: 'initial', textDecoration: 'none'}} href="https://t.me/coucouspb">Telegram</a>
+                            <a style={{color: 'initial', textDecoration: 'none'}} href="https://t.me/coucouspb">Telegram</a>
                         </Box>
                      </Box>
                   </Box>

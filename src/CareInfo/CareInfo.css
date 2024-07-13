@@ -76,3 +76,15 @@
     font-size: 0.7rem !important;
 }
 }
+
+@media (min-width: 768px) {
+    .care_info_1_text p,
+    .care_info_3_text p,
+    .care_info_4_text p,
+    .care_info_2_text p,
+    .care_info_5,
+    .care_info_size_text {
+        font-size: 18px;
+    }
+  }
+

@@ -8,7 +8,7 @@ function CareInfo() {
   return (
     <Box className='care' >
         <Box className='care_name' > О ТОВАРЕ</Box>
-            <Box sx={{padding: '0 1rem 1rem 1rem'}}> 
+            <Box className='care_info_5' sx={{padding: '0 1rem 1rem 1rem', textAlign: 'justify'}}> 
                 Для комфортного, приятного и длительного пользования обувью следует выбирать правильный соответствующий размер и полноту с учетом индивидуальных особенностей стопы. А также правильно эксплуатировать и ухаживать за парой.
             </Box>
             <Box className='care_info'>

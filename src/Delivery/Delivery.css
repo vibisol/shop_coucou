@@ -31,8 +31,18 @@
 
 .delivery_info_1_text p,
 .delivery_info_2_text p,
-.delivery_info_3_text
+.delivery_info_3_text 
 {
     text-align: justify;
+    margin-bottom: 0px;
 }
 
+
+@media (min-width: 768px) {
+    .delivery_info_1_text p,
+    .delivery_info_2_text p,
+    .delivery_info_3_text 
+    {
+        font-size: 18px;
+    }
+  }

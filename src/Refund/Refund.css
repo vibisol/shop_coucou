@@ -35,7 +35,20 @@
 .refund_info_1_text p,
 .refund_info_3_text p,
 .refund_info_4_text p,
-.refund_info_5_text p {
+.refund_info_5_text p ,
+.refund_info_2_text {
     margin-bottom: 0px;
     text-align: justify;
 }
+
+@media (min-width: 768px) {
+    .refund_info_1_text p,
+    .refund_info_3_text p,
+    .refund_info_4_text p,
+    .refund_info_5_text p,
+    .first_refund_info, 
+    .refund_info_2_text {
+        font-size: 18px;
+    }
+
+  }

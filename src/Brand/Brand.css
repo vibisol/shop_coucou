@@ -24,3 +24,11 @@
  justify-content: center;
 }
 
+@media (min-width: 768px) {
+    .brand_info_1_text p
+    {
+        font-size: 18px;
+    }
+  }
+
+

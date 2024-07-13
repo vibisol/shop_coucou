@@ -32,9 +32,20 @@
     padding-top: 1rem;
     padding-right: 1rem;
 }
-.contacts_info_1_text p,
+.contacts_info_1_text,
 .contacts_info_3_text p,
-.contacts_info_4_text p,
+.contacts_info_4_text,
 .contacts_info_5_text p {
     margin-bottom: 0px;
 }
+
+@media (min-width: 768px) {
+    .contacts_info_1_text,
+    .contacts_info_3_text p,
+    .contacts_info_4_text,
+    .contacts_info_5_text p,
+    .contacts_info_2_1_text {
+       font-size: 18px;
+    }
+
+  }
