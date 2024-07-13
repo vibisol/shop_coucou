@@ -37,7 +37,7 @@ function Contacts() {
                         <TelegramIcon />
                     </IconButton>
                         <Box className='contacts_info_2_1_text'>
-                            Telegram
+                            <a style={{color: 'initial', textDecoration: 'none'}} href="https://t.me/CouCou_spb">Telegram</a>
                         </Box>
                       </Box>
                      <Box sx={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
@@ -51,7 +51,7 @@ function Contacts() {
                             <WhatsAppIcon />
                         </IconButton>
                         <Box className='contacts_info_2_1_text'>
-                            WhatsApp
+                            <a style={{color: 'initial', textDecoration: 'none'}} href="https://wa.me/79112869339">WhatsApp</a>
                         </Box>
                      </Box>
                      
@@ -71,7 +71,7 @@ function Contacts() {
                             <InstagramIcon />
                         </IconButton>
                         <Box className='contacts_info_2_1_text'>
-                            Instagram
+                            <a style={{color: 'initial', textDecoration: 'none'}} href="https://www.instagram.com/coucou.spb?igsh=MW5tenlzdGpobWZpdA==">Instagram</a>
                         </Box>
                       </Box>
                      <Box sx={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
@@ -85,7 +85,7 @@ function Contacts() {
                             <TelegramIcon />
                         </IconButton>
                         <Box className='contacts_info_2_1_text'>
-                            Telegram
+                        <a style={{color: 'initial', textDecoration: 'none'}} href="https://t.me/coucouspb">Telegram</a>
                         </Box>
                      </Box>
                   </Box>
