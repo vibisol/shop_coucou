@@ -76,5 +76,6 @@
   .text_false_2
   {
       font-size: 18px;
+      text-align: justify;
   }
 }
