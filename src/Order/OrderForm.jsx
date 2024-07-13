@@ -371,7 +371,7 @@ function OrderForm() {
               {/* <Box mb={2}>
                 Нажимая кнопку "Оформить заказ", Вы соглашаетесь с условиями <Link to="/delivery" style={{ color: 'inherit !important' }}>доставки и оплаты</Link>, <Link onClick={handleOpen} style={{ color: 'inherit !important' }}>политикой конфиденциальности</Link>, <Link onClick={handleOpenOffer} style={{ color: 'inherit !important' }}>публичной офертой</Link> и принимаете условия возврата.
               </Box> */}
-              <Box mb={2}>
+              <Box mb={2} className='text_false_2'>
                 Так же перед оформлением заказа ознакомтесь с условиями <Link className='custom-link' to="/delivery">доставки и оплаты</Link>, <Link className='custom-link' onClick={handleOpen} >политикой конфиденциальности</Link>, <Link className='custom-link' onClick={handleOpenOffer} >публичной офертой</Link> и принимаете условия возврата.
               </Box>
               {/* <Button variant="contained" type="submit" fullWidth sx={{ borderRadius: '0px', backgroundColor: '#7A2031' }} className='button_product'>
