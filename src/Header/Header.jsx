@@ -95,7 +95,6 @@ function Header() {
         backgroundColor: '#DAA9CF',
       }
     }}
-    className={`header_main ${scrolled ? 'scrolled' : ''}`}
     > 
       <Box sx={{ zIndex: 100001 }}>
         <Button onClick={toggleDrawer(true)}><MenuIcon sx={{ color: 'black' }} /></Button>
