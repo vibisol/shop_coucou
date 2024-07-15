@@ -4,6 +4,7 @@ import { Box } from '@mui/material';
 import ProductDetails from './ProductDetail';
 import { useNavigate, useParams } from 'react-router-dom';
 import './Product.css';
+import zIndex from '@mui/material/styles/zIndex';
 
 const products = [
   { id: 1, extraId: 1, care: 'Чистить щеточкой для замши и наносить водоотталкивающий спрей', descUp: 'Ворс пони', descDown: 'Натуральная кожа', colors: 'ЧЕРНЫЙ', name: 'Туфли Bordel', size: ['36', '37', '38', '39', '40'], color: ['#710101', '#101820'], price: 9400, images: ['https://a.lmcdn.ru/img600x866/R/T/RTLADF428401_23835723_1_v2_2x.jpg', 'https://a.lmcdn.ru/img600x866/R/T/RTLADF428401_23835724_2_v1_2x.jpg', 'https://a.lmcdn.ru/img600x866/R/T/RTLADF428401_23835725_3_v1_2x.jpg'] },
@@ -43,7 +44,7 @@ function Product() {
           relatedProducts={products.filter(p => p.extraId === selectedProduct.extraId)}
         />
       ) : (
-        <Row>
+        <Row sx={{position: 'relative', zIndex: '1'}}>
           {products.map((product) => (
             <Col key={product.id} md={4}>
               <Box
