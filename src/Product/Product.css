@@ -6,8 +6,8 @@
     flex-wrap: wrap;
     margin-left: 4rem;
     padding-top:5rem;
-    position: relative;
-    z-index: 2;
+    /* position: relative;
+    z-index: 2; */
   }
   .button_product{
     background-color:#7A2031 !important;
