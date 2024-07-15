@@ -59,14 +59,14 @@ function Product() {
                 onClick={() => handleProductSelect(product)}
               >
                 <Card className="mb-4" style={{zIndex: 1, position: 'relative'}}>
-                  <Carousel interval={null} onClick={(e) => e.stopPropagation()}>
+                  <Carousel interval={null} onClick={(e) => e.stopPropagation()} style={{zIndex: 1, position: 'relative'}}>
                     {product.images.map((image, index) => (
                       <Carousel.Item key={index} style={{zIndex: 1, position: 'relative'}}>
                         <img
                           className="d-block w-100"
                           src={image}
                           alt={`${product.name} ${index + 1}`}
-                          style={{height:'450px', width:'300px'}}
+                          style={{height:'450px', width:'300px', zIndex: 1, position: 'relative'}}
                         />
                       </Carousel.Item>
                     ))}
