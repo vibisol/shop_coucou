@@ -44,7 +44,7 @@ function Product() {
           relatedProducts={products.filter(p => p.extraId === selectedProduct.extraId)}
         />
       ) : (
-        <Row style={{position: 'relative', zIndex: '1'}}>
+        <Row style={{position: 'relative', zIndex: 1}}>
           {products.map((product) => (
             <Col key={product.id} md={4}>
               <Box
@@ -53,11 +53,12 @@ function Product() {
                   '&:hover': {
                     transform: 'translateZ(20px)',
                     boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.3)'
+                    
                   },
                 }}
                 onClick={() => handleProductSelect(product)}
               >
-                <Card className="mb-4">
+                <Card className="mb-4" style={{zIndex: 1, position: 'relative'}}>
                   <Carousel interval={null} onClick={(e) => e.stopPropagation()}>
                     {product.images.map((image, index) => (
                       <Carousel.Item key={index}>
