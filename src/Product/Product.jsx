@@ -44,7 +44,7 @@ function Product() {
           relatedProducts={products.filter(p => p.extraId === selectedProduct.extraId)}
         />
       ) : (
-        <Row sx={{position: 'relative', zIndex: '1'}}>
+        <Row style={{position: 'relative', zIndex: '1'}}>
           {products.map((product) => (
             <Col key={product.id} md={4}>
               <Box
@@ -52,7 +52,7 @@ function Product() {
                   transition: 'transform 0.3s, box-shadow 0.3s',
                   '&:hover': {
                     transform: 'translateZ(20px)',
-                    boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.3)',
+                    boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.3)'
                   },
                 }}
                 onClick={() => handleProductSelect(product)}
