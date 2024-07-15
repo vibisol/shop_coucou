@@ -33,7 +33,7 @@ function Product() {
   };
 
   return (
-    <Container className='product-list' style={{ marginTop: '4rem' }}>
+    <Container className='product-list' style={{ zIndex: '1 !important', position: 'relative' }}>
       <Box sx={{fontSize:'2rem', color:'#7A2031'}}>
         {selectedProduct ? selectedProduct.name : 'КАТАЛОГ'}
       </Box>
