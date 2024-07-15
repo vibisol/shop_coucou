@@ -44,8 +44,8 @@ function Product() {
           relatedProducts={products.filter(p => p.extraId === selectedProduct.extraId)}
         />
       ) : (
-        <Row style={{position: 'relative', zIndex: 1}}>
-          {products.map((product) => (
+        <Row style={{ position: 'relative', zIndex: 1 }}>
+          {products.map((product, index) => (
             <Col key={product.id} md={4}>
               <Box
                 sx={{
@@ -53,12 +53,12 @@ function Product() {
                   '&:hover': {
                     transform: 'translateZ(20px)',
                     boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.3)'
-                    
                   },
+                  marginTop: index === 0 ? '4rem' : '0' // Добавляем отступ только для первого блока
                 }}
                 onClick={() => handleProductSelect(product)}
               >
-                <Card className="mb-4" style={{zIndex: 1, position: 'relative'}}>
+                <Card className="mb-4" style={{ zIndex: 1, position: 'relative' }}>
                   <Carousel interval={null} onClick={(e) => e.stopPropagation()}>
                     {product.images.map((image, index) => (
                       <Carousel.Item key={index}>
@@ -66,7 +66,7 @@ function Product() {
                           className="d-block w-100"
                           src={image}
                           alt={`${product.name} ${index + 1}`}
-                          style={{height:'450px', width:'300px'}}
+                          style={{ height: '450px', width: '300px' }}
                         />
                       </Carousel.Item>
                     ))}
@@ -80,6 +80,7 @@ function Product() {
             </Col>
           ))}
         </Row>
+
       )}
     </Container>
   );
