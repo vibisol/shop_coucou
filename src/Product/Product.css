@@ -22,3 +22,8 @@
     border: none !important;
     color: #DAA9CF !important;
   }
+  .product-list {
+    position: relative;
+    z-index: 1; /* Убедитесь, что z-index ниже, чем у хедера */
+    padding-top: 4rem; /* Добавляем отступ сверху */
+  }
