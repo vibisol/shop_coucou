@@ -48,14 +48,14 @@ function Product() {
           {products.map((product) => (
             <Col key={product.id} md={4}>
               <Box
-                sx={{
-                  transition: 'transform 0.3s, box-shadow 0.3s',
-                  '&:hover': {
-                    transform: 'translateZ(20px)',
-                    boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.3)'
+                // sx={{
+                //   transition: 'transform 0.3s, box-shadow 0.3s',
+                //   '&:hover': {
+                //     transform: 'translateZ(20px)',
+                //     boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.3)'
                     
-                  },
-                }}
+                //   }
+                // }}
                 onClick={() => handleProductSelect(product)}
               >
                 <Card className="mb-4" style={{zIndex: 1, position: 'relative'}}>
