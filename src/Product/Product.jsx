@@ -61,7 +61,7 @@ function Product() {
                 <Card className="mb-4" style={{zIndex: 1, position: 'relative'}}>
                   <Carousel interval={null} onClick={(e) => e.stopPropagation()}>
                     {product.images.map((image, index) => (
-                      <Carousel.Item key={index}>
+                      <Carousel.Item key={index} style={{zIndex: 1, position: 'relative'}}>
                         <img
                           className="d-block w-100"
                           src={image}
