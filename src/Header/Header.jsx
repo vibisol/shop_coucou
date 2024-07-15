@@ -79,7 +79,6 @@ function Header() {
     <Box
       sx={{
         position: 'fixed',
-        zIndex: 10000,
         display: 'flex',
         width: '100%',
         justifyContent: 'space-between',
@@ -88,13 +87,15 @@ function Header() {
         padding: '0px 2rem',
         backgroundColor: scrolled ? '#DAA9CF' : 'transparent',
         transition: 'background-color 0.3s ease',
+        zIndex: scrolled ? 1000 : 1000, 
         '&:hover': {
           backgroundColor: '#DAA9CF',
+          zIndex: 1000,
         }
       }}
       className={`header_main ${scrolled ? 'scrolled' : ''}`}
     > 
-      <Box sx={{ zIndex: '10001 !important' }}>
+      <Box sx={{ zIndex: 100001 }}>
         <Button onClick={toggleDrawer(true)}><MenuIcon sx={{ color: 'black' }} /></Button>
         <Drawer open={open} onClose={toggleDrawer(false)} sx={{zIndex: '10001 !important'}}>
           {DrawerList}
