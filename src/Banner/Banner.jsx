@@ -11,9 +11,9 @@ const products = [
     color: ['#710101', '#101820'], 
     price: 100, 
     images: [
-    'https://via.placeholder.com/400x300?text=1-1', 
-    'https://via.placeholder.com/400x300?text=2-1', 
-    'https://via.placeholder.com/400x300?text=3-1', 
+    '/img/borde_leo_1.jpg', 
+    '/img/bordel_red_1.jpg', 
+    '/img/bordel_black_1.jpg', 
     '/img/bobo_black_1.jpg', 
     '/img/bobo_red_1.jpg'
   ] },
@@ -28,7 +28,7 @@ function Banner() {
         loop
         muted
         playsInline>
-        <source src='/img/videoforthewomen.mp4' type='video/mp4' />
+        <source src='/img/main_video.mp4' type='video/mp4' />
       </video>
 
       <Box className='banner_model_text'> НАШИ МОДЕЛИ </Box>
@@ -84,33 +84,3 @@ function Banner() {
 }
 
 export default Banner;
-
-// function Banner() {
-//     return (
-//       <>
-//       <Box className='banner'>
-//             <img src='/img/banner.webp' alt='Banner' style={{ width: '100%', height: 'auto' }} />
-//         </Box>
-//         <Box sx={{position:'absolute', top:'30%', right: '5%', display:'flex', width:'16rem', zIndex:'2'}}>
-//          Lorem ipsum dolor sit amet 
-//          consectetur adipisicing elit. Ab dolorem cum ipsam odio 
-//          aliquid fugiat? Laudantium maxime ratione, a 
-//          velit quos cumque, laborum nihil voluptatibus 
-//          itaque necessitatibus quod excepturi odio.
-//           </Box>
-//   {/*         
-//       <Box
-//         sx={{
-//           backgroundImage: 'url(/img/banner.webp)',
-//           backgroundSize: 'cover',
-//           width: '100%',
-//           height: '60rem'
-//         }}
-//       >
-//         {/* Вы можете добавить сюда любой другой контент, если нужно */}
-//       {/* </Box>  */}
-//           </>
-//     );
-//   }
-  
-//   export default Banner;

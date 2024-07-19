@@ -136,20 +136,3 @@ function Header() {
 }
 
 export default Header;
-
-//   return (
-// <Box className='header'>
-//   <Box className='header_link_all'>
-//     <Link className='headerLink' href="#">КАТАЛОГ</Link>
-//     <Link className='headerLink' href="#">ДОСТАВКА</Link>
-//     <Link className='headerLink' href="#">КОНТАКТЫ</Link>
-//   </Box>
-//   <Box className='header_logo'>
-//     {'LOGO'}
-//   </Box>
-  // <Box className='header_basket' sx={{color:'white'}}>
-  //   <ShoppingBasketIcon />
-  // </Box>
-// </Box>
-       
-//   );

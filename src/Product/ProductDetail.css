@@ -33,7 +33,6 @@
   object-fit: cover;
 }
 
-/* Скрытие миниатюр на мобильных устройствах */
 @media (max-width: 1399px) {
   .corousel_custom {
     display: none !important;

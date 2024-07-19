@@ -60,7 +60,7 @@ const CssFormControlLabel = styled(FormControlLabel)({
   }
 });
 
-const apiKey = 'c52c54ff-316b-40af-a8a2-9b055fe81e4'; // Замените на ваш API-ключ
+const apiKey = 'c52c54ff-316b-40af-a8a2-9b055fe81e4';
 const LOCATION = { center: [75.9342802, 37.3350986], zoom: 10 }; 
 
 function OrderForm() {
@@ -110,9 +110,9 @@ function OrderForm() {
                 address: 'ул. Большевистская, д. 101',
               },
               root: 'cdek-map',
-              apiKey: 'c52c54ff-316b-40af-a8a2-9b055fe81e4c', // Замените на ваш API-ключ
+              apiKey: 'c52c54ff-316b-40af-a8a2-9b055fe81e4c',
               canChoose: true,
-              servicePath: 'http://localhost:8000/service.php', // Убедитесь, что путь корректен
+              servicePath: 'http://localhost:8000/service.php', 
               hideFilters: {
                 have_cashless: true,
                 have_cash: true,

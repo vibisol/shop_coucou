@@ -62,7 +62,6 @@
   width: 100% !important;
 }
 
-/* Адаптивные стили для мобильных устройств */
 @media (max-width: 1000px) {
   .basket-item {
       align-items: center;
