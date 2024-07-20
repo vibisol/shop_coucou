@@ -30,7 +30,7 @@ function Banner() {
          playsInline
          webkit-playsinline
          disablePictureInPicture>
-        <source src='/img/main_video.mp4' type='video/mp4' />
+        <source src='/img/main_video11.mp4' type='video/mp4' />
       </video>
 
       <Box className='banner_model_text'> НАШИ МОДЕЛИ </Box>
