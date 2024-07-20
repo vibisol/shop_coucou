@@ -1,34 +1,42 @@
-
-.brand_name{
+.brand_name {
     color: #7A2031;
     font-size: 2rem;
 }
 
-.brand{
+.brand {
     padding: 9rem 2rem 2rem 3rem;
     display: flex;
     flex-direction: column;
     gap: 3rem;
 }
 
-
-.brand_info_1_text p{
-    margin-bottom: 0px;
-    padding: 1rem 1rem 1rem 1rem;
-    display: flex;
-    flex-direction: column;
-    text-align: justify;
+.brand_info_1_text {
+    padding: 1rem;
 }
-.brand_name_img{
+
+.brand_info_1_text p {
+    margin-bottom: 1rem;
+    text-align: justify;
+    position: relative;
+}
+
+.brand_info_1_text p::after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+}
+
+.highlighted-text {
+    color: #7A2031;
+}
+
+.brand_name_img {
     display: flex;
- justify-content: center;
+    justify-content: center;
 }
 
 @media (min-width: 768px) {
-    .brand_info_1_text p
-    {
+    .brand_info_1_text p {
         font-size: 18px;
     }
-  }
-
-
+}
