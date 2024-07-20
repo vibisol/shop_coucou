@@ -24,8 +24,13 @@ function Banner() {
   return (
     <Box className='banner'>
       <video className='banner-video'       
-         autoPlay muted playsInline  data-wf-ignore>
-        <source src='/img/main_video11.mp4' type='video/mp4'  data-wf-ignore  />
+         autoPlay
+         loop
+         muted
+         playsInline
+         webkit-playsinline
+         disablePictureInPicture>
+        <source src='/img/main_video11.mp4' type='video/mp4' />
       </video>
 
       <Box className='banner_model_text'> НАШИ МОДЕЛИ </Box>
