@@ -50,7 +50,13 @@
     height: 250px;
     background-color: #ebedef !important;
 }
+.banner-video::-webkit-media-controls {
+    display: none !important;
+}
 
+.banner-video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+}
 
 @media (min-width: 700px) and (max-width: 1000px) {
     .corusel_main_p .corusel_m{

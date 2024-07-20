@@ -24,10 +24,11 @@ function Banner() {
   return (
     <Box className='banner'>
       <video className='banner-video'       
-       autoPlay
-        loop
-        muted
-        playsInline>
+            autoPlay
+            loop
+            muted
+            playsInline
+            controls>
         <source src='/img/main_video.mp4' type='video/mp4' />
       </video>
 
