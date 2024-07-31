@@ -7,6 +7,7 @@ import Divider from '@mui/material/Divider';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useLocation } from 'react-router-dom';
 import { Link, Badge } from '@mui/material';
 import './Header.css'
 
@@ -14,6 +15,8 @@ function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [totalQuantity, setTotalQuantity] = useState(0);
+  const location = useLocation();
+
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -89,7 +92,7 @@ function Header() {
       alignItems: 'center',
       height: '4rem',
       padding: '0px 2rem',
-      backgroundColor: scrolled ? '#DAA9CF' : 'transparent',
+      backgroundColor: scrolled || location.pathname=='/' ? '#DAA9CF' : 'transparent',
       transition: 'background-color 0.3s ease',
       '&:hover': {
         backgroundColor: '#DAA9CF',

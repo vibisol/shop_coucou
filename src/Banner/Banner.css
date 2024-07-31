@@ -4,6 +4,7 @@
     /* height: 100vh; Занимает всю высоту экрана */
     overflow: hidden;
     background-color: #DAA9CF;
+    margin-top: 4rem;
     border-bottom: 1px solid #a47e9e;
 }
 
