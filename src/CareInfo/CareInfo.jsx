@@ -26,11 +26,11 @@ function CareInfo() {
                                 <tbody>
                                     <tr className='table_style'>
                                         <td>Длина стопы</td>
-                                        <td className='table_style_td'>23,5</td>
-                                        <td className='table_style_td'>24,2 - 24,7</td>
-                                        <td className='table_style_td'>24,8 - 25</td>
-                                        <td className='table_style_td'>25,5</td>
-                                        <td className='table_style_td'>25,8 - 26</td>
+                                        <td className='table_style_td'>22,8 - 23,3</td>
+                                        <td className='table_style_td'>23,4 - 24</td>
+                                        <td className='table_style_td'>24,1 - 24,7</td>
+                                        <td className='table_style_td'>24,8 - 25,3</td>
+                                        <td className='table_style_td'>25,4 - 26</td>
                                     </tr>
                                     <tr className='table_style'>
                                         <td>Размер</td>

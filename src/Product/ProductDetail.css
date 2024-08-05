@@ -3,6 +3,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-height: 670px;
+  overflow: auto;
 }
 
 .text_product_detail {

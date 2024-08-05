@@ -45,11 +45,11 @@ function AccordionCopm({product}) {
                             <tbody>
                                 <tr className='table_style'>
                                     <td>Длина стопы</td>
-                                    <td>23,5</td>
-                                    <td>24,2 - 24,7</td>
-                                    <td>24,8 - 25</td>
-                                    <td>25,5</td>
-                                    <td>25,8 - 26</td>
+                                    <td>22,8 - 23,3</td>
+                                    <td>23,4 - 24</td>
+                                    <td>24,1 - 24,7</td>
+                                    <td>24,8 - 25,3</td>
+                                    <td>25,4 - 26</td>
                                 </tr>
                                 <tr className='table_style'>
                                     <td>Размер</td>
