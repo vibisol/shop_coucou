@@ -1,9 +1,12 @@
-import  React from 'react';
+import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import './Refund.css'
 
 function Refund() {
  
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
 
   return (
     <Box className='refund' >

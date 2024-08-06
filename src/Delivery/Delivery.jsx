@@ -1,10 +1,13 @@
-import  React from 'react';
+import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import './Delivery.css'
 
 function Delivery() {
  
-
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
+      
   return (
     <Box className='delivery' >
         <Box className='delivery_name' > ДОСТАВКА И ОПЛАТА</Box>

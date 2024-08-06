@@ -1,10 +1,13 @@
-import  React from 'react';
+import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import './Brand.css'
 
 function Brand() {
  
-
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
+      
   return (
     <Box className='brand' >
         <Box className='brand_name' > О БРЕНДЕ</Box>
