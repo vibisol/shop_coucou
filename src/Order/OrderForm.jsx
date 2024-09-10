@@ -274,6 +274,9 @@ function OrderForm() {
                   variant="standard"
                   value={formData.phone}
                   onChange={handleChange}
+                  type="tel"
+                  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+            helperText="Введите номер телефона (только цифры, от 10 до 11 символов)"
                   required
                 />
               </Box>
@@ -285,6 +288,7 @@ function OrderForm() {
                   variant="standard"
                   value={formData.email}
                   onChange={handleChange}
+                  type="email"
                   required
                 />
               </Box>
