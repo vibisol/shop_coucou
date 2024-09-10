@@ -46,7 +46,8 @@ function ProductDetails({ product }) {
         image: product.images[0],
         size: selectedSize,
         extraId: product.extraId,
-        quantity: 1
+        quantity: 1,
+        color: product.colors
       });
     }
     setCart(updatedCart);

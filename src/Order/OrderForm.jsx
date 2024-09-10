@@ -160,16 +160,54 @@ function OrderForm() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate('/confirmation');
+  
+    const storedCart = JSON.parse(sessionStorage.getItem('cart')) || [];
+  
+    const orderData = {
+      customer_email: formData.email,
+      customer_full_name: `${formData.name} ${formData.surname}`,
+      customer_phone: formData.phone,
+      customer_address: `${formData.city}, ${formData.street}, ${formData.apartment}`,
+      items: storedCart.map((item) => ({
+        product_name: item.name,
+        product_description: item.name,
+        product_quantity: item.quantity,
+        product_price: item.price,
+        product_colour: item.color,
+        product_size: item.size,
+      })),
+    };
+  
+    try {
+      const orderResponse = await fetch('https://coucou-spb.com/api/create_order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData)
+      });
+  
+      if (!orderResponse.ok) {
+        throw new Error('Ошибка при создании заказа');
+      }
+  
+      const responseData = await orderResponse.json();
+      console.log('Ответ сервера:', responseData);
+  
+      if (responseData.success && responseData.redirect_url) {
+        sessionStorage.removeItem('cart');
+        window.location.href = responseData.redirect_url;
+      }
+    } catch (error) {
+      console.error('Ошибка:', error);
+    }
   };
+  
 
   const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const deliveryCost = 500;
-
-  console.log(setLocation)
-
 
   return (
     <>
@@ -178,7 +216,35 @@ function OrderForm() {
           <Box display="flex" justifyContent="space-between" className='order_form_box_main'>
             <Box width="100%" className='order_form_box_main_1'>
               <Typography sx={{ fontFamily: 'Forum' ,     color: '#7A2031', fontSize: '2rem', marginBottom: '4rem'}}>ОФОРМЛЕНИЕ ЗАКАЗА</Typography>
-              {/* <Box mb={2}>
+              <Box width="95%" ml={3} p={2} border="1px solid #ccc" height='fit-content' className='order_form_box_main_2' sx={{marginBottom: '4rem'}}>
+              <Typography sx={{ fontFamily: 'Forum' }}>ВАШ ЗАКАЗ</Typography>
+              <Box>
+                {cartItems.map((item, index) => (
+                  <React.Fragment key={item.id}>
+                  <Box display="flex" alignItems="center" mb={2}>
+                    <img src={item.image} alt={item.name} width="80" height="100" style={{ marginRight: '16px', objectFit: 'contain' }} />
+                    <div style={{ display: 'flex' }} className='order_form_desc'>
+                      <p>{item.name}</p>
+                      <p>размер: {item.size}</p>
+                      <p>цена: {item.price.toLocaleString()} ₽</p>
+                      <p>количество: {item.quantity.toLocaleString()}</p>
+                    </div>
+                  </Box>
+                  {index < cartItems.length - 1 && <Divider sx={{ border: '1px solid' }} />}
+                </React.Fragment>
+                ))}
+                <Divider sx={{ border: '1px solid' }} />
+                <div>
+                  <p style={{ marginBottom: '2px' }}>Сумма по товарам <span>{total.toLocaleString()} ₽</span></p>
+                  {/* <p style={{ marginBottom: '2px' }}>Стоимость доставки <span>{deliveryCost.toLocaleString()} ₽</span></p> */}
+                </div>
+                <Divider sx={{ border: '1px solid' }} />
+                <div>
+                  <p><strong>Итого: <span>{(total).toLocaleString()} ₽</span></strong></p>
+                </div>
+              </Box>
+            </Box>
+              <Box mb={2}>
                 <CssTextField
                   fullWidth
                   label="Имя"
@@ -188,8 +254,8 @@ function OrderForm() {
                   onChange={handleChange}
                   required
                 />
-              </Box> */}
-              {/* <Box mb={2}>
+              </Box>
+              <Box mb={2}>
                 <CssTextField
                   fullWidth
                   label="Фамилия"
@@ -199,8 +265,8 @@ function OrderForm() {
                   onChange={handleChange}
                   required
                 />
-              </Box> */}
-              {/* <Box mb={2}>
+              </Box>
+              <Box mb={2}>
                 <CssTextField
                   fullWidth
                   label="Контактный телефон"
@@ -210,8 +276,8 @@ function OrderForm() {
                   onChange={handleChange}
                   required
                 />
-              </Box> */}
-              {/* <Box mb={2}>
+              </Box>
+              <Box mb={2}>
                 <CssTextField
                   fullWidth
                   label="E-mail"
@@ -219,10 +285,11 @@ function OrderForm() {
                   variant="standard"
                   value={formData.email}
                   onChange={handleChange}
+                  required
                 />
               </Box>
               <Typography sx={{ fontFamily: 'Forum' }}>ДОСТАВКА</Typography>
-              <Box mb={2}>
+              {/* <Box mb={2}>
                 <FormControl component="fieldset">
                   <RadioGroup
                     name="delivery"
@@ -270,7 +337,7 @@ function OrderForm() {
                   </YMapComponentsProvider>
                 </Box>
               )} */}
-              {/* <Box mb={2}>
+              <Box mb={2}>
                 <CssTextField
                   fullWidth
                   label="Город"
@@ -291,8 +358,8 @@ function OrderForm() {
                   onChange={handleChange}
                   required
                 />
-              </Box> */}
-              {/* <Box mb={2}>
+              </Box>
+              <Box mb={2}>
                 <CssTextField
                   fullWidth
                   label="Дом, квартира"
@@ -317,13 +384,13 @@ function OrderForm() {
                       label="БАНКОВСКОЙ КАРТОЙ"
                     />
                     <CssFormControlLabel
-                      value="sberbank"
+                      value="self"
                       control={<Radio sx={{ color: '#7A2031 !important' }} />}
                       label="ПРИ ПОЛУЧЕНИИ ЗАКАЗА"
                     />
                   </RadioGroup>
                 </FormControl>
-              </Box> */}
+              </Box>
               {/* <Box mb={2}>
                 <CssTextField
                   label="Комментарий к заказу"
@@ -334,49 +401,33 @@ function OrderForm() {
                 />
               </Box> */}
 
-            <Box width="95%" ml={3} p={2} border="1px solid #ccc" height='fit-content' className='order_form_box_main_2' sx={{marginBottom: '4rem'}}>
-              <Typography sx={{ fontFamily: 'Forum' }}>ВАШ ЗАКАЗ</Typography>
-              <Box>
-                {cartItems.map((item, index) => (
-                  <React.Fragment key={item.id}>
-                  <Box display="flex" alignItems="center" mb={2}>
-                    <img src={item.image} alt={item.name} width="80" height="100" style={{ marginRight: '16px', objectFit: 'contain' }} />
-                    <div style={{ display: 'flex' }} className='order_form_desc'>
-                      <p>{item.name}</p>
-                      <p>размер: {item.size}</p>
-                      <p>цена: {item.price.toLocaleString()} ₽</p>
-                      <p>количество: {item.quantity.toLocaleString()}</p>
-                    </div>
-                  </Box>
-                  {index < cartItems.length - 1 && <Divider sx={{ border: '1px solid' }} />}
-                </React.Fragment>
-                ))}
-                <Divider sx={{ border: '1px solid' }} />
-                <div>
-                  <p style={{ marginBottom: '2px' }}>Сумма по товарам <span>{total.toLocaleString()} ₽</span></p>
-                  {/* <p style={{ marginBottom: '2px' }}>Стоимость доставки <span>{deliveryCost.toLocaleString()} ₽</span></p> */}
-                </div>
-                <Divider sx={{ border: '1px solid' }} />
-                <div>
-                  <p><strong>Итого: <span>{(total).toLocaleString()} ₽</span></strong></p>
-                </div>
-              </Box>
-            </Box>
-              <Box className='text_false' sx={{marginTop: '4rem'}}>
+
+              {/* <Box className='text_false' sx={{marginTop: '4rem'}}>
                 <Box>
                   <p>На данный момент на сайте ведутся технические работы, для дальнейшего оформления заказа напишите менеджеру в <a className='link_false'  href="https://t.me/CouCou_spb" >Telegram</a> или <a className='link_false'  href="https://wa.me/79112869339">WhatsApp</a></p>
+                   <p> В случае выбора оплаты при получении  свяжитесь с нашим менеджером в <a className='link_false'  href="https://t.me/CouCou_spb" >Telegram</a> или <a className='link_false'  href="https://wa.me/79112869339">WhatsApp</a></p>
                   <p>Приносим свои извенения за временные неудобства.</p>
                 </Box>
-              </Box>
-              {/* <Box mb={2}>
-                Нажимая кнопку "Оформить заказ", Вы соглашаетесь с условиями <Link to="/delivery" style={{ color: 'inherit !important' }}>доставки и оплаты</Link>, <Link onClick={handleOpen} style={{ color: 'inherit !important' }}>политикой конфиденциальности</Link>, <Link onClick={handleOpenOffer} style={{ color: 'inherit !important' }}>публичной офертой</Link> и принимаете условия возврата.
               </Box> */}
-              <Box mb={2} className='text_false_2'>
+             
+              {/* <Box mb={2} className='text_false_2'>
                 Так же перед оформлением заказа ознакомтесь с условиями <Link className='custom-link' to="/delivery">доставки и оплаты</Link>, <Link className='custom-link' onClick={handleOpen} >политикой конфиденциальности</Link>, <Link className='custom-link' onClick={handleOpenOffer} >публичной офертой</Link> и принимаете условия возврата.
-              </Box>
-              {/* <Button variant="contained" type="submit" fullWidth sx={{ borderRadius: '0px', backgroundColor: '#7A2031' }} className='button_product'>
-                ОФОРМИТЬ ЗАКАЗ
-              </Button> */}
+              </Box> */}
+              {formData.payment === 'self' ? (
+                  <>
+                  <Box>
+                  <p className='text_false_2'>В случае выбора оплаты при получении свяжитесь с нашим менеджером в <a className='link_false' href="https://t.me/CouCou_spb">Telegram</a> или <a className='link_false' href="https://wa.me/79112869339">WhatsApp</a></p>
+                </Box><Box mb={2} className='text_false_2'>
+                    Так же перед оформлением заказа ознакомтесь с условиями <Link className='custom-link' to="/delivery">доставки и оплаты</Link>, <Link className='custom-link' onClick={handleOpen}>политикой конфиденциальности</Link>, <Link className='custom-link' onClick={handleOpenOffer}>публичной офертой</Link> и принимаете условия возврата.
+                  </Box>
+                  </> 
+                ) : (
+                  <><Box mb={2}>
+                    Нажимая кнопку "Оформить заказ", Вы соглашаетесь с условиями <Link to="/delivery" style={{ color: 'inherit !important' }}>доставки и оплаты</Link>, <Link onClick={handleOpen} style={{ color: 'inherit !important' }}>политикой конфиденциальности</Link>, <Link onClick={handleOpenOffer} style={{ color: 'inherit !important' }}>публичной офертой</Link> и принимаете условия возврата.
+                  </Box><Button variant="contained" type="submit" fullWidth sx={{ borderRadius: '0px', backgroundColor: '#7A2031' }} className='button_product'>
+                      ОФОРМИТЬ ЗАКАЗ
+                    </Button></>
+                )}
             </Box>
 
           </Box>
