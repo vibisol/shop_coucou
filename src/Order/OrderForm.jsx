@@ -83,6 +83,8 @@ function OrderForm() {
   const widget = useRef();
   const ymap3Ref = useRef();
   const [location, setLocation] = useState(LOCATION);
+  const [selectedCdekData, setSelectedCdekData] = useState(null);
+
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -145,8 +147,10 @@ function OrderForm() {
               onCalculate() {
                 
               },
-              onChoose() {
-                
+              onChoose: function (_type, tariff, address) {
+                // Сохраняем данные в состоянии
+                setSelectedCdekData({ _type, tariff, address });
+                this.close(); // Закрываем виджет, если используете popup
               },
             });
           }
@@ -164,12 +168,21 @@ function OrderForm() {
     e.preventDefault();
   
     const storedCart = JSON.parse(sessionStorage.getItem('cart')) || [];
-  
+
+    const customerAddress = formData.delivery === 'cdek' && selectedCdekData
+    ? `${selectedCdekData.address.formatted 
+        ? `${selectedCdekData.address.formatted}, ${selectedCdekData.address.postal_code}` 
+        : `${selectedCdekData.address.name}, ${selectedCdekData.address.address}, ${selectedCdekData.address.postal_code}`},
+      Стоимость доставки: ${selectedCdekData.tariff.delivery_sum} ₽,
+      Тариф: ${selectedCdekData.tariff.tariff_name},
+      Срок доставки: до ${selectedCdekData.tariff.period_max} дней`
+    : `${formData.city}, ${formData.street}, ${formData.apartment}`;
+
     const orderData = {
       customer_email: formData.email,
       customer_full_name: `${formData.name} ${formData.surname}`,
       customer_phone: formData.phone,
-      customer_address: `${formData.city}, ${formData.street}, ${formData.apartment}`,
+      customer_address: customerAddress,
       items: storedCart.map((item) => ({
         product_name: item.name,
         product_description: item.name,
@@ -198,6 +211,7 @@ function OrderForm() {
   
       if (responseData.success && responseData.redirect_url) {
         sessionStorage.removeItem('cart');
+        setSelectedCdekData(null);
         window.location.href = responseData.redirect_url;
       }
     } catch (error) {
@@ -208,7 +222,8 @@ function OrderForm() {
 
   const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const deliveryCost = 500;
-
+  const delivery = formData.delivery === 'cdek' ? selectedCdekData?.tariff?.delivery_sum || 0 : deliveryCost;
+  
   return (
     <>
       <Container className='order_form_main'>
@@ -236,11 +251,11 @@ function OrderForm() {
                 <Divider sx={{ border: '1px solid' }} />
                 <div>
                   <p style={{ marginBottom: '2px' }}>Сумма по товарам <span>{total.toLocaleString()} ₽</span></p>
-                  {/* <p style={{ marginBottom: '2px' }}>Стоимость доставки <span>{deliveryCost.toLocaleString()} ₽</span></p> */}
+                  <p style={{ marginBottom: '2px' }}>Стоимость доставки <span>{delivery.toLocaleString()} ₽</span></p>
                 </div>
                 <Divider sx={{ border: '1px solid' }} />
                 <div>
-                  <p><strong>Итого: <span>{(total).toLocaleString()} ₽</span></strong></p>
+                  <p><strong>Итого: <span>{(total + delivery).toLocaleString()} ₽</span></strong></p>
                 </div>
               </Box>
             </Box>
@@ -293,7 +308,7 @@ function OrderForm() {
                 />
               </Box>
               <Typography sx={{ fontFamily: 'Forum' }}>ДОСТАВКА</Typography>
-              {/* <Box mb={2}>
+              <Box mb={2}>
                 <FormControl component="fieldset">
                   <RadioGroup
                     name="delivery"
@@ -312,8 +327,8 @@ function OrderForm() {
                     />
                   </RadioGroup>
                 </FormControl>
-              </Box> */}
-              {/* {formData.delivery === 'cdek' && (
+              </Box>
+              {formData.delivery === 'cdek' && (
                 <Box mb={2}>
                   <Typography>Выберите пункт выдачи CDEK:</Typography>
                   <div id="cdek-map" style={{ width: 'auto', height: '600px' , zIndex:1}}></div>
@@ -340,40 +355,51 @@ function OrderForm() {
                     </YMap>
                   </YMapComponentsProvider>
                 </Box>
-              )} */}
-              <Box mb={2}>
-                <CssTextField
-                  fullWidth
-                  label="Город"
-                  name="city"
-                  variant="standard"
-                  value={formData.city}
-                  onChange={handleChange}
-                  required
-                />
-              </Box>
-              <Box mb={2}>
-                <CssTextField
-                  fullWidth
-                  label="Улица"
-                  name="street"
-                  variant="standard"
-                  value={formData.street}
-                  onChange={handleChange}
-                  required
-                />
-              </Box>
-              <Box mb={2}>
-                <CssTextField
-                  fullWidth
-                  label="Дом, квартира"
-                  name="apartment"
-                  variant="standard"
-                  value={formData.apartment}
-                  onChange={handleChange}
-                  required
-                />
-              </Box>
+                
+              )}
+              {selectedCdekData && formData.delivery === 'cdek'&& (
+                <Box mt={2} sx={{margin: '30px 0px 10px 0px'}}>
+                  <Typography sx={{ fontFamily: 'Forum' , color: '#7A2031'}}>Вы выбрали пункт выдачи CDEK:</Typography>
+                  <Typography sx={{ fontFamily: 'Forum' , color: '#7A2031'}} >
+                    {selectedCdekData.address.formatted 
+                      ? `${selectedCdekData.address.formatted}, ${selectedCdekData.address.postal_code}` 
+                      : `${selectedCdekData.address.name}, ${selectedCdekData.address.address}, ${selectedCdekData.address.postal_code}`}
+                  </Typography>
+                  <Typography sx={{ fontFamily: 'Forum' ,color: '#7A2031'}}>Стоимость доставки: {selectedCdekData.tariff.delivery_sum} ₽</Typography>
+                  <Typography sx={{ fontFamily: 'Forum' , color: '#7A2031'}}>Тариф: {selectedCdekData.tariff.tariff_name} </Typography>
+                  <Typography sx={{ fontFamily: 'Forum' , color: '#7A2031'}}>Срок доставки: до {selectedCdekData.tariff.period_max} дней</Typography>
+                </Box>
+              )}
+               {formData.delivery !== 'cdek'&& (
+              <><Box mb={2}>
+                  <CssTextField
+                    fullWidth
+                    label="Город"
+                    name="city"
+                    variant="standard"
+                    value={formData.city}
+                    onChange={handleChange}
+                    required />
+                </Box><Box mb={2}>
+                    <CssTextField
+                      fullWidth
+                      label="Улица"
+                      name="street"
+                      variant="standard"
+                      value={formData.street}
+                      onChange={handleChange}
+                      required />
+                  </Box><Box mb={2}>
+                    <CssTextField
+                      fullWidth
+                      label="Дом, квартира"
+                      name="apartment"
+                      variant="standard"
+                      value={formData.apartment}
+                      onChange={handleChange}
+                      required />
+                  </Box></>
+               )}
               <Typography sx={{ fontFamily: 'Forum' }}>СПОСОБ ОПЛАТЫ</Typography>
               <Box mb={2}>
                 <FormControl component="fieldset">
@@ -387,11 +413,13 @@ function OrderForm() {
                       control={<Radio sx={{ color: '#7A2031 !important' }} />}
                       label="БАНКОВСКОЙ КАРТОЙ"
                     />
+                     {formData.delivery !== 'cdek'&& (
                     <CssFormControlLabel
                       value="self"
                       control={<Radio sx={{ color: '#7A2031 !important' }} />}
                       label="ПРИ ПОЛУЧЕНИИ ЗАКАЗА"
                     />
+                    )}
                   </RadioGroup>
                 </FormControl>
               </Box>

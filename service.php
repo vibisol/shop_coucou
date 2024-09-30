@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
@@ -7,8 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 $service = new service(
-    'VxDyudArsJXQla0yDo6Mss',
-    'WnKxg2hvkHm28VcGh88mt'
+    'VxDyudArsJXQRaUiiylakWar0yDo6Mss',
+    'WnKxg2hvkHm28VcGaSuTzi8UH6wh88mt'
  );
 $service->process($_GET, file_get_contents('php://input'));
 
@@ -195,20 +198,38 @@ class service
         $GLOBALS['http_response_code'] = $code;
     }
 
-    private function getAuthToken()
-    {
-        $token = $this->httpRequest('oauth/token', array(
-            'grant_type' => 'client_credentials',
-            'client_id' => $this->login,
-            'client_secret' => $this->secret,
-        ), true);
-        $result = json_decode($token['result'], true);
-        if (!isset($result['access_token'])) {
-            throw new RuntimeException('Server not authorized to CDEK API');
-        }
+    // private function getAuthToken()
+    // {
+    //     $token = $this->httpRequest('oauth/token', array(
+    //         'grant_type' => 'client_credentials',
+    //         'client_id' => $this->login,
+    //         'client_secret' => $this->secret,
+    //     ), true);
+    //     $result = json_decode($token['result'], true);
+    //     if (!isset($result['access_token'])) {
+    //         throw new RuntimeException('Server not authorized to CDEK API');
+    //     }
 
-        $this->authToken = $result['access_token'];
+    //     $this->authToken = $result['access_token'];
+    // }
+    
+    private function getAuthToken()
+{
+    $token = $this->httpRequest('oauth/token', array(
+        'grant_type' => 'client_credentials',
+        'client_id' => $this->login,
+        'client_secret' => $this->secret,
+    ), true);
+
+    $result = json_decode($token['result'], true);
+
+    if (!isset($result['access_token'])) {
+        // Добавляем вывод ошибки от API CDEK
+        throw new RuntimeException('Server not authorized to CDEK API: ' . $token['result']);
     }
+
+    $this->authToken = $result['access_token'];
+}
 
     private function httpRequest($method, $data, $useFormData = false, $useJson = false)
     {
