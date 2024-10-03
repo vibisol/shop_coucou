@@ -19,7 +19,9 @@
     text-align: justify;
     position: relative;
 }
-
+.brand_info_1_text p:nth-of-type(3) {
+    text-align: left; 
+}
 .brand_info_1_text p::after {
     content: '';
     display: inline-block;

@@ -323,7 +323,7 @@ function OrderForm() {
                      <CssFormControlLabel
                       value="courier"
                       control={<Radio sx={{ color: '#7A2031 !important' }} />}
-                      label="ДОСТАВКА КУРЬЕРОМ ПО г. САНКТ-ПЕТЕРБУРГ (500 ₽)"
+                      label="ДОСТАВКА КУРЬЕРОМ С ПРИМЕРКОЙ ПО г. САНКТ-ПЕТЕРБУРГ (500 ₽)"
                     />
                   </RadioGroup>
                 </FormControl>

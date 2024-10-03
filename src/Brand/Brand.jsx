@@ -11,8 +11,9 @@ function Brand() {
   return (
     <Box className='brand' >
         <Box className='brand_name' > О БРЕНДЕ</Box>
-            <Box className='brand_name_img' >
-                <img src='/img/brand.png' alt='size' style={{width: '100%'}}/>
+            <Box className='brand_name_img'  sx={{gap:'5px'}}>
+                <img src='/img/brand1.JPG' alt='size' style={{width: '50%', height:'50%'}}/>
+                <img src='/img/bran2d.JPG' alt='size' style={{width: '50.8%', height:'50%'}}/>
             </Box>
             <Box className='brand_info_1_text'> 
             <p style={{display: 'inline', marginBottom:'1rem',  textAlign: 'justify'}}>
