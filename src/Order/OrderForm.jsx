@@ -106,10 +106,10 @@ function OrderForm() {
             widget.current = new window.CDEKWidget({
               from: {
                 country_code: 'RU',
-                city: 'Новосибирск',
-                postal_code: 630009,
-                code: 270,
-                address: 'ул. Большевистская, д. 101',
+                city: 'Санкт-Петербург',
+                postal_code: 197022,
+                code: 1087,
+                address: 'пр-т Аптекарский, 8, лит.А, пом. 1Н',
               },
               root: 'cdek-map',
               apiKey: 'c52c54ff-316b-40af-a8a2-9b055fe81e4c',
@@ -163,6 +163,9 @@ function OrderForm() {
       [name]: type === 'checkbox' ? checked : value,
     });
   };
+  const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const deliveryCost = 500;
+  const delivery = formData.delivery === 'cdek' ? selectedCdekData?.tariff?.delivery_sum || 0 : deliveryCost;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -191,6 +194,7 @@ function OrderForm() {
         product_colour: item.color,
         product_size: item.size,
       })),
+      customer_price: (total + delivery).toLocaleString(),
     };
   
     try {
@@ -212,7 +216,7 @@ function OrderForm() {
       if (responseData.success && responseData.redirect_url) {
         sessionStorage.removeItem('cart');
         setSelectedCdekData(null);
-        window.location.href = responseData.redirect_url;
+        window.location.replace(responseData.redirect_url);
       }
     } catch (error) {
       console.error('Ошибка:', error);
@@ -220,9 +224,7 @@ function OrderForm() {
   };
   
 
-  const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  const deliveryCost = 500;
-  const delivery = formData.delivery === 'cdek' ? selectedCdekData?.tariff?.delivery_sum || 0 : deliveryCost;
+
   
   return (
     <>
@@ -417,7 +419,7 @@ function OrderForm() {
                     <CssFormControlLabel
                       value="self"
                       control={<Radio sx={{ color: '#7A2031 !important' }} />}
-                      label="ПРИ ПОЛУЧЕНИИ ЗАКАЗА"
+                      label="ПРИ ПОЛУЧЕНИИ ЗАКАЗА (в пределах г. Санкт-Петербург)"
                     />
                     )}
                   </RadioGroup>
