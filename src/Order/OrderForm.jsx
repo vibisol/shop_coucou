@@ -60,7 +60,7 @@ const CssFormControlLabel = styled(FormControlLabel)({
   }
 });
 
-const apiKey = 'c52c54ff-316b-40af-a8a2-9b055fe81e4с';
+const apiKey = 'c52c54ff-316b-40af-a8a2-9b055fe81e4c';
 const LOCATION = { center: [75.9342802, 37.3350986], zoom: 10 }; 
 
 function OrderForm() {
