@@ -114,7 +114,7 @@ function OrderForm() {
               root: 'cdek-map',
               apiKey: 'c52c54ff-316b-40af-a8a2-9b055fe81e4c',
               canChoose: true,
-              servicePath: 'http://nginx-entrypoint:443/service.php', 
+              servicePath: 'https://nginx-entrypoint/service.php', 
               hideFilters: {
                 have_cashless: true,
                 have_cash: true,
