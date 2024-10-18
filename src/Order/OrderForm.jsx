@@ -114,7 +114,7 @@ function OrderForm() {
               root: 'cdek-map',
               apiKey: 'c52c54ff-316b-40af-a8a2-9b055fe81e4c',
               canChoose: true,
-              servicePath: 'http://localhost:8000/service.php', 
+              servicePath: 'https://coucou-spb.com/service.php', 
               hideFilters: {
                 have_cashless: true,
                 have_cash: true,
