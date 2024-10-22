@@ -85,7 +85,6 @@ function OrderForm() {
   const [location, setLocation] = useState(LOCATION);
   const [selectedCdekData, setSelectedCdekData] = useState(null);
 
-
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleOpenOffer = () => setOpenOffer(true);
@@ -150,8 +149,11 @@ function OrderForm() {
               onChoose: function (_type, tariff, address) {
                 // Сохраняем данные в состоянии
                 setSelectedCdekData({ _type, tariff, address });
-                this.close(); // Закрываем виджет, если используете popup
-              },
+                try {
+                  this.close();
+                } catch (error) {
+                }
+              }
             });
           }
         };
@@ -194,6 +196,11 @@ function OrderForm() {
         product_colour: item.color,
         product_size: item.size,
       })),
+      cdek_data: {
+        type: "string",
+        tariff: selectedCdekData?.tariff,
+        address: selectedCdekData?.address
+        },
       customer_price: (total + delivery).toLocaleString(),
     };
   
