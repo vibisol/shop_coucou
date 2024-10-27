@@ -127,6 +127,7 @@ function ProductDetails({ product }) {
           <Box style={{ marginTop: '1rem' }}>ВЫБРАТЬ РАЗМЕР</Box>
           <SizePicker
             size={product.size}
+            productName={product?.name}
             onSizeSelect={setSelectedSize}
           />
           <AccordionCopm product={product}/>
