@@ -28,7 +28,7 @@ function Banner() {
          loop
          muted
          playsInline
-         webkit-playsinline
+         webkit-playsinline="true"
          disablePictureInPicture>
         <source src='/img/main_video11.mp4' type='video/mp4' />
       </video>
