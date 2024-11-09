@@ -35,7 +35,7 @@ function AccordionCopm({product}) {
                     <Typography className='accordion_comp' sx={{ fontFamily: 'Forum, sans-serif' }}>ТАБЛИЦА РАЗМЕРОВ</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <Typography className='accordion_comp' sx={{ whiteSpace: 'break-spaces', fontFamily: 'Forum, sans-serif' }}>
+                    <Typography component="div" className='accordion_comp' sx={{ whiteSpace: 'break-spaces', fontFamily: 'Forum, sans-serif' }}>
                         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                             <thead>
                                 <tr>
@@ -90,12 +90,12 @@ function AccordionCopm({product}) {
                 <Typography className='accordion_comp' sx={{ fontFamily: 'Forum, sans-serif' }}>СОСТАВ И УХОД</Typography>
             </AccordionSummary>
             <AccordionDetails>
-                <Typography className='accordion_comp' sx={{ whiteSpace: 'break-spaces', fontFamily: 'Forum, sans-serif' }}>
-                   Cостав:
-                   <p>Материал верха: {product.descUp}</p>
-                   <p>Материал подкладки: {product.descDown}</p>
-                   Уход:
-                   <p>{product.care}</p>
+                <Typography component="div" className='accordion_comp' sx={{ whiteSpace: 'break-spaces', fontFamily: 'Forum, sans-serif' }}>
+                    Состав:
+                    <div>Материал верха: {product.descUp}</div>
+                    <div>Материал подкладки: {product.descDown}</div>
+                    Уход:
+                    <div>{product.care}</div>
                 </Typography>
             </AccordionDetails>
         </Accordion>
